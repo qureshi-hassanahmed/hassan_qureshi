@@ -1,19 +1,155 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% comment %} <h1>Contact Management</h1> {% endcomment %}
+{% comment %} <h1 style="text-align: center; color: #333; font-family: Arial, sans-serif; font-size: 2em; padding-top: 20px;">
+    Contact Management
+</h1> {% endcomment %}
 <h1 style="text-align: center; font-size: 2em; padding-top: 20px; color: #593bdb;">
     Contact Management
 </h1>
 <a href="{% url 'contact_create' %}">
-
+    {% comment %} <button 
+    type="button" class="btn btn-info"> Create Contact <span class="btn-icon-right">
+        <i class="bi bi-plus-circle"></i>
+    </button> {% endcomment %}
     <button type="button" class="btn btn-success">
         <i class="bi bi-person-plus"></i>
-        &nbsp;
         Create A New Contact
     </button>
     <br>
     <br>
-</a> 
+</a>
+
+{% comment %} <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Done?</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in contact_list %}
+        <tr>
+           
+            <td>
+                <a class= "icon-link" href="{% url "contact_detail" task.pk %}">
+                    <i class="bi bi-receipt"></i>
+                </a>            
+            &nbsp;
+            <a class = "icon-link" href={% url "contact_delete" pk=task.pk %}>
+                <i class="bi bi-trash"></i>
+            </a>
+            &nbsp;
+                {{ task.name }}
+            </td>
+            <td>
+                {% if task.is_done %}Yes{% else %}No{% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> {% endcomment %}
+
+
+
+{% comment %} <div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Contacts</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered verticle-middle table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Task</th>
+                        <th scope="col">Progress</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Label</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Air Conditioner</td>
+                        <td>
+                            <div class="progress" style="background: rgba(127, 99, 244, .1)">
+                                <div class="progress-bar bg-primary" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Apr 20,2018</td>
+                        <td><span class="badge badge-primary">70%</span>
+                        </td>
+                        <td>
+                            <span>
+                                <a href="javascript:void()" class="mr-4" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted"></i> </a>
+                                <a href="javascript:void()" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Textiles</td>
+                        <td>
+                            <div class="progress" style="background: rgba(76, 175, 80, .1)">
+                                <div class="progress-bar bg-success" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>May 27,2018</td>
+                        <td><span class="badge badge-success">70%</span>
+                        </td>
+                        <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted"></i> </a><a href="javascript:void()" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Milk Powder</td>
+                        <td>
+                            <div class="progress" style="background: rgba(70, 74, 83, .1)">
+                                <div class="progress-bar bg-dark" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>May 18,2018</td>
+                        <td><span class="badge badge-dark">70%</span>
+                        </td>
+                        <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted"></i> </a><a href="javascript:void()" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vehicles</td>
+                        <td>
+                            <div class="progress" style="background: rgba(255, 87, 34, .1)">
+                                <div class="progress-bar bg-danger" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Mar 27,2018</td>
+                        <td><span class="badge badge-danger">70%</span>
+                        </td>
+                        <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted"></i> </a><a href="javascript:void()" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Boats</td>
+                        <td>
+                            <div class="progress" style="background: rgba(255, 193, 7, .1)">
+                                <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Jun 28,2018</td>
+                        <td><span class="badge badge-warning">70%</span>
+                        </td>
+                        <td><span><a href="javascript:void()" class="mr-4" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted"></i> </a><a href="javascript:void()" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>  {% endcomment %}
 
 <div class="card">
     <div class="card-header">
@@ -48,11 +184,75 @@
                         <td><span> {{ contact.email }}</span></td>  
                         <td><span> {{ contact.created_at }}</span></td>  
                         <td><span> 
-  
+                            <a class= "icon-link" href="{% url "contact_detail" contact.pk %}">
+                                <i class="bi bi-receipt"></i>
+                            </a>            
+                        &nbsp;
+                        <a class = "icon-link" href={% url "contact_delete" contact.pk %}>
+                            <i class="bi bi-trash"></i>
+                        </a> 
+                        &nbsp;
                         </span></td>  
                         
                         {% comment %} <td><span class="badge badge-success">Done</span></td> {% endcomment %}
                     </tr>
+                    {% comment %} <tr>
+                        <td>
+                            <div class="round-img">
+                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                            </div>
+                        </td>
+                        <td>Lew Shawon</td>
+                        <td><span>Asus-565</span></td>
+                        <td><span>456 pcs</span></td>
+                        <td><span class="badge badge-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="round-img">
+                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                            </div>
+                        </td>
+                        <td>lew Shawon</td>
+                        <td><span>Dell-985</span></td>
+                        <td><span>456 pcs</span></td>
+                        <td><span class="badge badge-success">Done</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="round-img">
+                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                            </div>
+                        </td>
+                        <td>Lew Shawon</td>
+                        <td><span>Asus-565</span></td>
+                        <td><span>456 pcs</span></td>
+                        <td><span class="badge badge-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="round-img">
+                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                            </div>
+                        </td>
+                        <td>lew Shawon</td>
+                        <td><span>Dell-985</span></td>
+                        <td><span>456 pcs</span></td>
+                        <td><span class="badge badge-success">Done</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="round-img">
+                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                            </div>
+                        </td>
+                        <td>Lew Shawon</td>
+                        <td><span>Asus-565</span></td>
+                        <td><span>456 pcs</span></td>
+                        <td><span class="badge badge-warning">Pending</span></td>
+                    </tr> {% endcomment %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -61,9 +261,3 @@
 </div>
 
 {% endblock content %}
-
-
-
-
-
-
