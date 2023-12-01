@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 style="text-align: center; font-size: 2em; padding-top: 20px; color: #593bdb;">
+    Contact Management
+</h1>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Contacts</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Contact Name</th>
+                        <th>Email</th>
+                        <th>Created Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contact_list %}
+                    <tr>
+                        <td>
+                            <div class="round-img">
+                                <a href="">
+                                    {% load static %}
+                                    <img width="35" src="{% static 'hello.png' %}" alt="contact picture">
+                                    {% comment %} <img width="35" src="./images/avatar/1.png" alt=""> {% endcomment %}
+                                </a>
+                            </div>
+                        </td>
+                        <td> {{ contact.name }}</td>
+                        {% comment %} email will come later {% endcomment %}
+                        <td><span> {{ contact.email }}</span></td>  
+                        <td><span> {{ contact.created_at }}</span></td>  
+                        <td><span> 
+  
+                        </span></td>  
+                        
+                        {% comment %} <td><span class="badge badge-success">Done</span></td> {% endcomment %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+                        
