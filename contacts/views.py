@@ -8,3 +8,9 @@ from .test_form import ContactForm # in tutorial this was named contact_form.py 
 class ContactListView(ListView):
     model = Contact
     template_name = 'contacts/contact_list.html'
+    
+class ContactCreateView(CreateView):
+    model = Contact
+    form_class = ContactForm
+    success_url = reverse_lazy('contact_list')
+    template_name = 'contacts/create_contact.html'
